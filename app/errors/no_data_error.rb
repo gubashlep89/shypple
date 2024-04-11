@@ -1,0 +1,2 @@
+class NoDataError < StandardError
+end
