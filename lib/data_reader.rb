@@ -5,6 +5,8 @@
 require_relative '../app/errors/no_data_error'
 
 module DataReader
+
+  # Read data from file
   def self.call(data_path = 'response.json')
     data = JSON.parse File.read(data_path)
 
@@ -15,6 +17,7 @@ module DataReader
 
   private
 
+  # Store data from file in memory for multiple usage
   def self.store_data(data)
     $sailings_data = data['sailings']
     $rates_data = data['rates']

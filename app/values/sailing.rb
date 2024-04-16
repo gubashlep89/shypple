@@ -16,6 +16,7 @@ class Sailing
     @rate_currency = rate_obj['rate_currency']
   end
 
+  # @return [Float] Calculated price of sailing in EUR.
   def eur_rate
     if rate_currency == 'EUR'
       rate.to_f
@@ -26,10 +27,12 @@ class Sailing
     end
   end
 
+  # @return [Hash]
   def edge
     show_attributes.merge({ eur_rate: eur_rate })
   end
 
+  # @return [Hash]
   def show_attributes
     {
       origin_port: origin_port,

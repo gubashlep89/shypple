@@ -8,21 +8,33 @@ require_relative '../lib/data_processor'
 require_relative '../lib/data_reader'
 require_relative '../lib/input_reader'
 
+# @param origin [String] Origin port.
+# @param destination [String] Destination port.
+#
+# @return [Array](Hash) Array of cheapest direct sailings
 def cheapest_direct(origin, destination)
   edges = DataProcessor.prepare_edges
   result = DirectRoutes.find_cheapest(edges, origin, destination)
   OutputGetaway.show_result(result)
 end
 
+# @param origin [String] Origin port.
+# @param destination [String] Destination port.
+#
+# @return [Array](Hash) Array of cheapest direct or indirect sailings
 def cheapest_direct_or_indirect(origin, destination)
   edges = DataProcessor.prepare_edges
   result = DirectOrIndirectRoutes.find_cheapest(edges, origin, destination)
   OutputGetaway.show_result(result)
 end
 
-def shortest_direct_or_indirect(origin, destination)
+# @param origin [String] Origin port.
+# @param destination [String] Destination port.
+#
+# @return [Array](Hash) Array of the fastest direct or indirect sailings
+def fastest_direct_or_indirect(origin, destination)
   edges = DataProcessor.prepare_edges
-  result = DirectOrIndirectRoutes.find_shortest(edges, origin, destination)
+  result = DirectOrIndirectRoutes.find_fastest(edges, origin, destination)
   OutputGetaway.show_result(result)
 end
 
@@ -33,3 +45,4 @@ DataReader.call('response.json')
 # main methods
 cheapest_direct(origin, destination)
 cheapest_direct_or_indirect(origin, destination)
+fastest_direct_or_indirect(origin, destination)
